@@ -87,9 +87,21 @@ function toggleCard(cardElt) {
     });
 };
 
+function turnCardsForward() {
+    let btnForward = document.getElementsByClassName("btn-secondary")[0];
+    let onBtnForwardClick = function() {
+        let cards = document.getElementsByClassName("col-md-4")[0].parentElement;
+        let last = cards.children[5]
+        let first = cards.children[0]
+        cards.insertBefore(last, first);
+    };
+    btnForward.addEventListener("click", onBtnForwardClick);
+};
+
 clickFooter();
 hamburgerMenu();
 redTextClicked();
 greenTextToggle();
 nucleariseBootstrap();
 toggleCardView();
+turnCardsForward();
