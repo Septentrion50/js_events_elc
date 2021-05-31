@@ -110,6 +110,61 @@ function turnCardsBackward() {
     btnBackward.addEventListener("click", onBtnBackwardClick);
 };
 
+function wtfLand() {
+    let btnElt = document.querySelector('.navbar .navbar-brand strong');
+    let listElt = document.querySelector('.album .row');
+    let cardElt = listElt.querySelectorAll('.col-md-4');
+    document.addEventListener("keydown", e => {
+        if (_isLogoTextSelected(btnElt) == false) return false;
+        _keydownList(e, listElt);
+        _keydownCards(e, cardElt);
+    });
+};
+
+function _isLogoTextSelected(btnElt) {
+    let logoText = btnElt.textContent;
+    let selectedText = window.getSelection().focusNode.textContent;
+    if (logoText !== selectedText) {
+        return false;
+    };
+};
+
+function _keydownList(event, listElt) {
+    switch (event.key) {
+        case 'y':
+            listElt.classList.add('justify-content-center');
+            listElt.classList.remove('justify-content-end');
+            break;
+        case 'p':
+            listElt.classList.className = '';
+            listElt.classList.remove('justify-content-center');
+            listElt.classList.add('justify-content-end');
+            break;
+        case 'a':
+        case 'b':
+            listElt.classList.remove('justify-content-center');
+            listElt.classList.remove('justify-content-end');
+            break;
+    };
+};
+
+function _keydownCards(event, cardElt) {
+    for (let i = 0; i < cardElt.length; i++) {
+        cardElt[i].className = '';
+        switch (event.key) {
+            case 'a':
+            case 'y':
+            case 'p':
+                cardElt[i].classList.add('col-md-3');
+                break;
+            case 'b':
+                cardElt[i].className = '';
+                cardElt[i].classList.add('col-md-4');
+                break;
+        };
+    };
+};
+
 clickFooter();
 hamburgerMenu();
 redTextClicked();
@@ -118,3 +173,4 @@ nucleariseBootstrap();
 toggleCardView();
 turnCardsForward();
 turnCardsBackward();
+wtfLand();
