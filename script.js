@@ -98,6 +98,18 @@ function turnCardsForward() {
     btnForward.addEventListener("click", onBtnForwardClick);
 };
 
+function turnCardsBackward() {
+    let btnBackward = document.getElementsByClassName("btn-primary")[0];
+    let onBtnBackwardClick = function(e) {
+        e.preventDefault();
+        let cards = document.getElementsByClassName("col-md-4")[0].parentElement;
+        let last = cards.children[5]
+        let first = cards.children[0]
+        cards.insertBefore(first, last.nextSibling);
+    };
+    btnBackward.addEventListener("click", onBtnBackwardClick);
+};
+
 clickFooter();
 hamburgerMenu();
 redTextClicked();
@@ -105,3 +117,4 @@ greenTextToggle();
 nucleariseBootstrap();
 toggleCardView();
 turnCardsForward();
+turnCardsBackward();
